@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A little romantic surprise: a date invitation with food, date and time picking." />
+  <title>A Little Question 💌</title>
+
+  <!-- Optional web fonts; the site degrades gracefully to system fonts offline -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient floating hearts (behind everything, decorative only) -->
+  <div class="hearts-layer" id="ambientHearts" aria-hidden="true"></div>
+
+  <main class="card" id="card">
+
+    <!-- ============ SCREEN 1 : THE INVITATION ============ -->
+    <section class="screen active" data-screen="1" aria-labelledby="title1">
+      <p class="eyebrow">a little question, just for you</p>
+      <h1 id="title1" tabindex="-1">Hey, you! 💗</h1>
+      <p class="question">Would you like to go on a date with me?</p>
+      <p class="subtitle">I have something special planned for us... ✨</p>
+
+      <p class="tease" id="tease" role="status" aria-live="polite"></p>
+
+      <div class="choices" id="playZone">
+        <button type="button" class="btn btn-yes" id="yesBtn">Yes 💖</button>
+        <button type="button" class="btn btn-no"  id="noBtn">No 🙈</button>
+      </div>
+    </section>
+
+    <!-- ============ SCREEN 2 : FOOD SELECTION ============ -->
+    <section class="screen" data-screen="2" aria-labelledby="title2" hidden>
+      <button type="button" class="back-btn" data-go="1">← Back</button>
+      <h1 id="title2" tabindex="-1">YAY!!! 🥹💖</h1>
+      <p class="question">I knew you’d say yes!</p>
+      <p class="subtitle">Okay, first things first...</p>
+      <h2 class="step-title">What would you like to eat? 🍽️</h2>
+
+      <div class="food-grid" role="group" aria-label="Choose your food">
+        <button type="button" class="food-card" data-food="Pizza" aria-pressed="false">
+          <span class="food-emoji" aria-hidden="true">🍕</span>
+          <h3>Pizza</h3>
+          <p>A cheesy little date!</p>
+        </button>
+        <button type="button" class="food-card" data-food="Sushi" aria-pressed="false">
+          <span class="food-emoji" aria-hidden="true">🍣</span>
+          <h3>Sushi</h3>
+          <p>A little roll of love!</p>
+        </button>
+      </div>
+
+      <p class="hint" id="foodHint" hidden></p>
+      <button type="button" class="btn btn-yes" id="continueBtn" disabled>Continue 💗</button>
+    </section>
+
+    <!-- ============ SCREEN 3 : DATE & TIME ============ -->
+    <section class="screen" data-screen="3" aria-labelledby="title3" hidden>
+      <button type="button" class="back-btn" data-go="2">← Back</button>
+      <h1 id="title3" tabindex="-1">Perfect! 💕</h1>
+      <p class="question">Now, when should we go?</p>
+      <p class="subtitle">Pick a day and time that works for you.</p>
+
+      <form id="whenForm" novalidate>
+        <div class="field">
+          <label for="dateInput">Our Date</label>
+          <input type="date" id="dateInput" name="date" required
+                 autocomplete="off" aria-describedby="whenError" />
+        </div>
+        <div class="field">
+          <label for="timeInput">Our Time</label>
+          <input type="time" id="timeInput" name="time" required
+                 autocomplete="off" aria-describedby="whenError" />
+        </div>
+
+        <p class="error" id="whenError" role="alert" hidden></p>
+
+        <button type="submit" class="btn btn-yes" id="confirmBtn">Confirm Our Date 💗</button>
+      </form>
+    </section>
+
+    <!-- ============ SCREEN 4 : THE FINAL SURPRISE ============ -->
+    <section class="screen" data-screen="4" aria-labelledby="title4" hidden>
+      <span class="glow-heart gh1" aria-hidden="true">💗</span>
+      <span class="glow-heart gh2" aria-hidden="true">💖</span>
+      <span class="glow-heart gh3" aria-hidden="true">💕</span>
+      <span class="glow-heart gh4" aria-hidden="true">🩷</span>
+
+      <h1 id="title4" tabindex="-1">It’s a Date! 💖✨</h1>
+
+      <h2 class="plan-title">Our Little Plan</h2>
+      <ul class="plan">
+        <li><span class="label">Food:</span> <span class="value" id="planFood"></span></li>
+        <li><span class="label">Date:</span> <span class="value" id="planDate"></span></li>
+        <li><span class="label">Time:</span> <span class="value" id="planTime"></span></li>
+      </ul>
+
+      <p class="message">I can’t wait to spend a beautiful moment with you. It’s not just about the food or the place; it’s about being with you. 💗</p>
+      <p class="closing">See you soon, my favorite person! 🥹💕</p>
+
+      <button type="button" class="btn btn-ghost" id="restartBtn">Start Over ↻</button>
+    </section>
+
+  </main>
+
+  <!-- Celebration hearts (in front, decorative only, pointer-transparent) -->
+  <div class="hearts-layer front" id="burstHearts" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
